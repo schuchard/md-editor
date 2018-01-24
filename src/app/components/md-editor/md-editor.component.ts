@@ -8,7 +8,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
       <div [innerHtml]="compiled"></div>
     </div>
   `,
-  styleUrls: ['./md-editor.component.scss']
+  styleUrls: ['./md-editor.component.css'],
 })
 export class MdComponent {
   @Input() compiled: string;
