@@ -1,17 +1,24 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { Store } from '@ngrx/store';
+
+import * as fromStore from './store';
 
 import * as marked from 'marked';
 
 @Component({
   selector: 'app-md',
   templateUrl: './app.component.html',
-  styleUrls: [ './app.component.css' ]
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
   compiledMarkdown: string;
   startingValue = '';
+  constructor(private store: Store<fromStore.State>) {}
 
   ngOnInit() {
+    // this.fromStore$ = this.store.select(fromStore.getDocument)
+    this.store.dispatch(new fromStore.LoadDocument());
     this.startingValue = this.getPlaceHolder();
 
     this.compiledMarkdown = this.compileMarkdown(this.startingValue);
@@ -26,6 +33,7 @@ export class AppComponent implements OnInit {
   }
 
   private getPlaceHolder() {
+    // prettier-ignore
     return (
       '# Title \n' +
       '## Title\n' +
