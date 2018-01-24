@@ -1,1 +1,1 @@
-export * from './document.actions';
+export * from './document.action';

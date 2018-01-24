@@ -10,4 +10,4 @@ export const reducers: ActionReducerMap<State> = {
   documents: fromDocuments.reducer,
 };
 
-export const getDocumentState = createFeatureSelector<State>('documents');
+export const getRootState = createFeatureSelector<fromDocuments.DocumentState>('documents');

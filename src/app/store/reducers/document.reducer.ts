@@ -12,6 +12,10 @@ export const initialState: DocumentState = {
   activeDocumentLoading: false,
 };
 
+export const getActiveDocument = (state: DocumentState) => state.activeDocument;
+export const getActiveDocumentLoaded = (state: DocumentState) => state.activeDocumentLoaded;
+export const getActiveDocumentLoading = (state: DocumentState) => state.activeDocumentLoading;
+
 export function reducer(state = initialState, action: fromDocument.DocumentActions) {
   switch (action.type) {
     case fromDocument.LOAD_DOCUMENT: {

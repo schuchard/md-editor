@@ -17,9 +17,10 @@ import { storeFreeze } from 'ngrx-store-freeze';
 //   StoreRouterConnectingModule,
 //   RouterStateSerializer,
 // } from '@ngrx/router-store';
-// import { EffectsModule } from '@ngrx/effects';
+import { EffectsModule } from '@ngrx/effects';
 import { StoreModule, MetaReducer } from '@ngrx/store';
-import { reducers } from './store';
+import { reducers, effects } from './store';
+import { DocumentService } from './services';
 
 export const metaReducers: MetaReducer<any>[] = !environment.production ? [storeFreeze] : [];
 
@@ -28,9 +29,13 @@ export const metaReducers: MetaReducer<any>[] = !environment.production ? [store
     BrowserModule,
     FormsModule,
     StoreModule.forRoot(reducers, { metaReducers }),
+    EffectsModule.forRoot(effects),
     environment.production ? [] : StoreDevtoolsModule.instrument(),
   ],
   declarations: [AppComponent, MdComponent, MenuComponent],
   bootstrap: [AppComponent],
+  providers: [
+    DocumentService
+  ]
 })
 export class AppModule {}
