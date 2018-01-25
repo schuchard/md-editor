@@ -1,7 +1,12 @@
 import * as fromDocument from '../actions';
 
+export interface ActiveDocument {
+  formattedDocument: string;
+  rawDocument: string;
+}
+
 export interface DocumentState {
-  activeDocument: any;
+  activeDocument: ActiveDocument | null;
   activeDocumentLoaded: boolean;
   activeDocumentLoading: boolean;
 }
@@ -34,10 +39,13 @@ export function reducer(state = initialState, action: fromDocument.DocumentActio
     }
 
     case fromDocument.LOAD_DOCUMENT_SUCCESS: {
-      const document = action.payload;
+      const doc = action.payload;
       return {
         ...state,
-        activeDocument: document,
+        activeDocument: {
+          formattedDocument: doc.rawDocument,
+          rawDocument: doc.formattedDocument,
+        },
         activeDocumentLoaded: true,
         activeDocumentLoading: false,
       };

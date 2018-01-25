@@ -11,3 +11,5 @@ export const reducers: ActionReducerMap<State> = {
 };
 
 export const getRootState = createFeatureSelector<fromDocuments.DocumentState>('documents');
+
+// put entire store into async module for feature state

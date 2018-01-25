@@ -16,9 +16,9 @@ export class DocumentEffects {
   loadDocument$ = this.actions$.ofType(documentActions.LOAD_DOCUMENT).pipe(
     switchMap(() => {
       return this.documentService.loadDocument().pipe(
-        map((doc) => {
-          const formattedDoc = this.documentService.compileMarkdown(doc);
-          return new documentActions.LoadDocumentSuccess(formattedDoc);
+        map((rawDocument) => {
+          const formattedDocument = this.documentService.compileMarkdown(rawDocument);
+          return new documentActions.LoadDocumentSuccess({ rawDocument, formattedDocument });
         }),
         catchError((err) => of(new documentActions.LoadDocumentFail(err)))
       );
