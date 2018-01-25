@@ -40,7 +40,7 @@ export class DocumentEffects {
     filter(([payload, state]) => {
       return payload !== state.documents.activeDocument.rawDocument;
     }),
-    switchMap(([payload, state]) => {
+    switchMap(([payload]) => {
       return this.documentService
         .saveDocument(payload)
         .pipe(
