@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Store } from '@ngrx/store';
 
+import { Store } from '@ngrx/store';
 import * as fromStore from './store';
+
 import { of } from 'rxjs/observable/of';
 
 @Component({
@@ -12,7 +13,7 @@ import { of } from 'rxjs/observable/of';
 })
 export class AppComponent implements OnInit {
   activeFormattedDocument$: Observable<string> = of();
-  activeRawDocument$: Observable<string>;
+  activeRawDocument$: Observable<string> = of();
 
   constructor(private store: Store<fromStore.State>) {}
 
@@ -23,7 +24,7 @@ export class AppComponent implements OnInit {
     this.activeRawDocument$ = this.store.select(fromStore.getActiveRawDocument);
   }
 
-  onValueChanged(value: string) {
-    this.store.dispatch(new fromStore.SaveDocument(value));
+  onValueChanged(newValue: string) {
+    this.store.dispatch(new fromStore.SaveDocument(newValue));
   }
 }

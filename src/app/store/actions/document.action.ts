@@ -22,7 +22,7 @@ export class LoadDocumentSuccess implements Action {
 }
 
 /**
- * update documents
+ * save documents
  */
 export const SAVE_DOCUMENT = '[DOCUMENT] Save Document';
 export const SAVE_DOCUMENT_FAIL = '[DOCUMENT] Save Document Fail';

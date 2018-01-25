@@ -3,14 +3,21 @@ import { Injectable } from '@angular/core';
 import { Effect, Actions } from '@ngrx/effects';
 
 import { of } from 'rxjs/observable/of';
-import { map, switchMap, catchError, debounceTime } from 'rxjs/operators';
+import { map, switchMap, catchError, debounceTime, withLatestFrom, filter } from 'rxjs/operators';
+
+import { Store } from '@ngrx/store';
+import * as fromStore from '../../store';
 
 import * as documentActions from '../actions/document.action';
 import { DocumentService } from '../../services';
 
 @Injectable()
 export class DocumentEffects {
-  constructor(private actions$: Actions, private documentService: DocumentService) {}
+  constructor(
+    private actions$: Actions,
+    private documentService: DocumentService,
+    private store: Store<fromStore.State>
+  ) {}
 
   @Effect()
   loadDocument$ = this.actions$.ofType(documentActions.LOAD_DOCUMENT).pipe(
@@ -27,11 +34,15 @@ export class DocumentEffects {
 
   @Effect()
   saveDocument$ = this.actions$.ofType(documentActions.SAVE_DOCUMENT).pipe(
-    debounceTime(600),
+    debounceTime(6),
     map((action: documentActions.SaveDocument) => action.payload),
-    switchMap((document) => {
+    withLatestFrom(this.store),
+    filter(([payload, state]) => {
+      return payload !== state.documents.activeDocument.rawDocument;
+    }),
+    switchMap(([payload, state]) => {
       return this.documentService
-        .saveDocument(document)
+        .saveDocument(payload)
         .pipe(
           map((response) => new documentActions.SaveDocumentSuccess(response)),
           catchError((err) => of(new documentActions.SaveDocumentFail(err)))
