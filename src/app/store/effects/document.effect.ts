@@ -27,16 +27,15 @@ export class DocumentEffects {
 
   @Effect()
   saveDocument$ = this.actions$.ofType(documentActions.SAVE_DOCUMENT).pipe(
-    debounceTime(1500),
+    debounceTime(600),
     map((action: documentActions.SaveDocument) => action.payload),
     switchMap((document) => {
-      return this.documentService.saveDocument(document).pipe(
-        map((response) => {
-          const { rawDocument, formattedDocument } = response;
-          return new documentActions.SaveDocumentSuccess({ rawDocument, formattedDocument });
-        }),
-        catchError((err) => of(new documentActions.SaveDocumentFail(err)))
-      );
+      return this.documentService
+        .saveDocument(document)
+        .pipe(
+          map((response) => new documentActions.SaveDocumentSuccess(response)),
+          catchError((err) => of(new documentActions.SaveDocumentFail(err)))
+        );
     })
   );
 }
