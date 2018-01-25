@@ -24,6 +24,6 @@ export class AppComponent implements OnInit {
   }
 
   onValueChanged(value: string) {
-    // this.compiledMarkdown = this.compileMarkdown(value);
+    this.store.dispatch(new fromStore.SaveDocument(value));
   }
 }

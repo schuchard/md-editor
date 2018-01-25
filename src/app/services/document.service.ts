@@ -15,6 +15,10 @@ export class DocumentService {
     return marked.parser(marked.lexer(value));
   }
 
+  saveDocument(rawDocument: string) {
+    return of({ rawDocument, formattedDocument: this.compileMarkdown(rawDocument) });
+  }
+
   private exampleDocument() {
     // prettier-ignore
     return (

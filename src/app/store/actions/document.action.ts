@@ -24,21 +24,22 @@ export class LoadDocumentSuccess implements Action {
 /**
  * update documents
  */
-export const UPDATE_DOCUMENT = '[DOCUMENT] Update Document';
-export const UPDATE_DOCUMENT_FAIL = '[DOCUMENT] Update Document Fail';
-export const UPDATE_DOCUMENT_SUCCESS = '[DOCUMENT] Update Document Success';
+export const SAVE_DOCUMENT = '[DOCUMENT] Save Document';
+export const SAVE_DOCUMENT_FAIL = '[DOCUMENT] Save Document Fail';
+export const SAVE_DOCUMENT_SUCCESS = '[DOCUMENT] Save Document Success';
 
-export class UpdateDocument implements Action {
-  readonly type = UPDATE_DOCUMENT;
+export class SaveDocument implements Action {
+  readonly type = SAVE_DOCUMENT;
+  constructor(public payload: string) {}
 }
 
-export class UpdateDocumentFail implements Action {
-  readonly type = UPDATE_DOCUMENT_FAIL;
+export class SaveDocumentFail implements Action {
+  readonly type = SAVE_DOCUMENT_FAIL;
   constructor(public payload: any) {}
 }
 
-export class UpdateDocumentSuccess implements Action {
-  readonly type = UPDATE_DOCUMENT_SUCCESS;
+export class SaveDocumentSuccess implements Action {
+  readonly type = SAVE_DOCUMENT_SUCCESS;
   constructor(public payload: any) {}
 }
 
@@ -46,6 +47,6 @@ export type DocumentActions =
   | LoadDocument
   | LoadDocumentFail
   | LoadDocumentSuccess
-  | UpdateDocument
-  | UpdateDocumentFail
-  | UpdateDocumentSuccess;
+  | SaveDocument
+  | SaveDocumentFail
+  | SaveDocumentSuccess;
