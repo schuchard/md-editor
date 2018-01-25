@@ -1,5 +1,5 @@
 <app-md-editor
-  [compiled]="activeDocument$ | async"
-  [placeHolder]="startingValue"
+  [compiled]="activeFormattedDocument | async"
+  [placeHolder]="activeRawDocument | async"
   (valueChanged)="onValueChanged($event)">
 </app-md-editor>

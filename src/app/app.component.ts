@@ -3,7 +3,6 @@ import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 
 import * as fromStore from './store';
-import { ActiveDocument } from './store/reducers/document.reducer';
 import { of } from 'rxjs/observable/of';
 
 @Component({
@@ -12,19 +11,16 @@ import { of } from 'rxjs/observable/of';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  activeDocument$: Observable<string> = of();
-  // compiledMarkdown: string;
-  startingValue = '';
+  activeFormattedDocument: Observable<string> = of();
+  activeRawDocument: Observable<string>;
 
   constructor(private store: Store<fromStore.State>) {}
 
   ngOnInit() {
-    this.activeDocument$ = this.store.select(fromStore.getActiveRawDocument);
-
     this.store.dispatch(new fromStore.LoadDocument());
-    // this.startingValue = this.getPlaceHolder();
 
-    // this.compiledMarkdown = this.compileMarkdown(this.startingValue);
+    this.activeFormattedDocument = this.store.select(fromStore.getActiveFormattedDocument);
+    this.activeRawDocument = this.store.select(fromStore.getActiveRawDocument);
   }
 
   onValueChanged(value: string) {

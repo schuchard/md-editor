@@ -15,6 +15,14 @@ export const getDocumentLoaded = createSelector(
   fromDocument.getActiveDocumentLoaded
 );
 
+export const getActiveFormattedDocument = createSelector(
+  getDocumentState,
+  fromDocument.getActiveDocument,
+  (state) => {
+    return state.activeDocument.formattedDocument;
+  }
+);
+
 export const getActiveRawDocument = createSelector(
   getDocumentState,
   fromDocument.getActiveDocument,

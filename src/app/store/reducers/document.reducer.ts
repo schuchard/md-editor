@@ -43,8 +43,8 @@ export function reducer(state = initialState, action: fromDocument.DocumentActio
       return {
         ...state,
         activeDocument: {
-          formattedDocument: doc.rawDocument,
-          rawDocument: doc.formattedDocument,
+          formattedDocument: doc.formattedDocument,
+          rawDocument: doc.rawDocument,
         },
         activeDocumentLoaded: true,
         activeDocumentLoading: false,
