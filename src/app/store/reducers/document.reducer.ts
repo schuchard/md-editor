@@ -25,6 +25,13 @@ export const getActiveDocument = (state: DocumentState) => state.activeDocument;
 export const getActiveDocumentLoaded = (state: DocumentState) => state.activeDocumentLoaded;
 export const getActiveDocumentLoading = (state: DocumentState) => state.activeDocumentLoading;
 
+const setActiveDocument = function(payload) {
+  return {
+    formattedDocument: payload.formattedDocument,
+    rawDocument: payload.rawDocument,
+  };
+};
+
 export function reducer(state = initialState, action: fromDocument.DocumentActions) {
   switch (action.type) {
     case fromDocument.LOAD_DOCUMENT: {
@@ -43,13 +50,9 @@ export function reducer(state = initialState, action: fromDocument.DocumentActio
     }
 
     case fromDocument.LOAD_DOCUMENT_SUCCESS: {
-      const doc = action.payload;
       return {
         ...state,
-        activeDocument: {
-          formattedDocument: doc.formattedDocument,
-          rawDocument: doc.rawDocument,
-        },
+        activeDocument: setActiveDocument(action.payload),
         activeDocumentLoaded: true,
         activeDocumentLoading: false,
       };
@@ -75,10 +78,7 @@ export function reducer(state = initialState, action: fromDocument.DocumentActio
       const doc = action.payload;
       return {
         ...state,
-        activeDocument: {
-          formattedDocument: doc.formattedDocument,
-          rawDocument: doc.rawDocument,
-        },
+        activeDocument: setActiveDocument(action.payload),
         documentSaving: false,
         documentSaved: true,
       };
