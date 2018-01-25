@@ -11,16 +11,16 @@ import { of } from 'rxjs/observable/of';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  activeFormattedDocument: Observable<string> = of();
-  activeRawDocument: Observable<string>;
+  activeFormattedDocument$: Observable<string> = of();
+  activeRawDocument$: Observable<string>;
 
   constructor(private store: Store<fromStore.State>) {}
 
   ngOnInit() {
     this.store.dispatch(new fromStore.LoadDocument());
 
-    this.activeFormattedDocument = this.store.select(fromStore.getActiveFormattedDocument);
-    this.activeRawDocument = this.store.select(fromStore.getActiveRawDocument);
+    this.activeFormattedDocument$ = this.store.select(fromStore.getActiveFormattedDocument);
+    this.activeRawDocument$ = this.store.select(fromStore.getActiveRawDocument);
   }
 
   onValueChanged(value: string) {
