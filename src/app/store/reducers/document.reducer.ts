@@ -14,7 +14,10 @@ export interface DocumentState {
 }
 
 export const initialState: DocumentState = {
-  activeDocument: null,
+  activeDocument: {
+    formattedDocument: null,
+    rawDocument: null,
+  },
   activeDocumentLoaded: false,
   activeDocumentLoading: false,
   documentSaving: false,
