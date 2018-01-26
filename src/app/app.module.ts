@@ -7,6 +7,9 @@ import { MdComponent } from './components/md-editor/md-editor.component';
 import { environment } from '../environments/environment';
 import { MenuComponent } from './containers/menu/menu.component';
 
+import { MatToolbarModule, MatButtonModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 /* development only */
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { storeFreeze } from 'ngrx-store-freeze';
@@ -27,15 +30,18 @@ export const metaReducers: MetaReducer<any>[] = !environment.production ? [store
 @NgModule({
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     ReactiveFormsModule,
+
+    MatToolbarModule,
+    MatButtonModule,
+
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot(effects),
     environment.production ? [] : StoreDevtoolsModule.instrument(),
   ],
   declarations: [AppComponent, MdComponent, MenuComponent],
   bootstrap: [AppComponent],
-  providers: [
-    DocumentService
-  ]
+  providers: [DocumentService],
 })
 export class AppModule {}
