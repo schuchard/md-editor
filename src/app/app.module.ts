@@ -9,6 +9,8 @@ import { MenuComponent } from './containers/menu/menu.component';
 
 import { MatToolbarModule, MatButtonModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 /* development only */
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -35,6 +37,8 @@ export const metaReducers: MetaReducer<any>[] = !environment.production ? [store
 
     MatToolbarModule,
     MatButtonModule,
+    MatProgressSpinnerModule,
+    MatTooltipModule,
 
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot(effects),

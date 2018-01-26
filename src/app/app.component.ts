@@ -12,8 +12,8 @@ import { of } from 'rxjs/observable/of';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  activeFormattedDocument$: Observable<string> = of();
-  activeRawDocument$: Observable<string> = of();
+  activeFormattedDocument$: Observable<string>;
+  activeRawDocument$: Observable<string>;
 
   constructor(private store: Store<fromStore.State>) {}
 

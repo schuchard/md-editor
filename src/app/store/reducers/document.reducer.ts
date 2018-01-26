@@ -28,6 +28,9 @@ export const getActiveDocument = (state: DocumentState) => state.activeDocument;
 export const getActiveDocumentLoaded = (state: DocumentState) => state.activeDocumentLoaded;
 export const getActiveDocumentLoading = (state: DocumentState) => state.activeDocumentLoading;
 
+export const getDocumentSaved = (state: DocumentState) => state.documentSaved;
+export const getDocumentSaving = (state: DocumentState) => state.documentSaving;
+
 const setActiveDocument = function(payload) {
   return {
     formattedDocument: payload.formattedDocument,

@@ -34,7 +34,7 @@ export class DocumentEffects {
 
   @Effect()
   saveDocument$ = this.actions$.ofType(documentActions.SAVE_DOCUMENT).pipe(
-    debounceTime(400),
+    debounceTime(800),
     map((action: documentActions.SaveDocument) => action.payload),
     switchMap((payload) => {
       return this.documentService
