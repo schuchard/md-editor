@@ -1,29 +1,37 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-md-editor',
   template: `
     <div id="editor">
-      <textarea [placeholder]="placeHolder" (keyup)="onValueChange($event)"></textarea>
+      <textarea
+      [formControl]="text"
+      [placeholder]="placeHolder"
+      ></textarea>
       <div [innerHtml]="compiled"></div>
     </div>
   `,
   styleUrls: ['./md-editor.component.css'],
 })
-export class MdComponent {
+export class MdComponent implements OnInit, OnDestroy {
   @Input() compiled: string;
   @Input() placeHolder: string;
 
-  @Output() valueChanged = new EventEmitter<string>();
+  @Output() valueChanged: EventEmitter<string> = new EventEmitter();
 
-  onValueChange(e) {
-    const body = e.target.value;
+  text = new FormControl();
+  sub: Subscription;
 
-    if (!body) {
-      // reset to initial state
-      return this.valueChanged.emit(this.placeHolder);
-    } else {
-      this.valueChanged.emit(body);
-    }
+  ngOnInit() {
+    this.sub = this.text.valueChanges
+      .pipe(debounceTime(500), distinctUntilChanged())
+      .subscribe((text) => this.valueChanged.emit(text));
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }

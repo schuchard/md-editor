@@ -38,14 +38,15 @@ export function reducer(state = initialState, action: fromDocument.DocumentActio
       return {
         ...state,
         activeDocumentLoading: true,
+        activeDocumentLoaded: false,
       };
     }
 
     case fromDocument.LOAD_DOCUMENT_FAIL: {
       return {
         ...state,
-        activeDocumentLoaded: false,
         activeDocumentLoading: false,
+        activeDocumentLoaded: false,
       };
     }
 
@@ -53,8 +54,8 @@ export function reducer(state = initialState, action: fromDocument.DocumentActio
       return {
         ...state,
         activeDocument: setActiveDocument(action.payload),
-        activeDocumentLoaded: true,
         activeDocumentLoading: false,
+        activeDocumentLoaded: true,
       };
     }
 

@@ -34,13 +34,9 @@ export class DocumentEffects {
 
   @Effect()
   saveDocument$ = this.actions$.ofType(documentActions.SAVE_DOCUMENT).pipe(
-    debounceTime(6),
+    debounceTime(400),
     map((action: documentActions.SaveDocument) => action.payload),
-    withLatestFrom(this.store),
-    filter(([payload, state]) => {
-      return payload !== state.documents.activeDocument.rawDocument;
-    }),
-    switchMap(([payload]) => {
+    switchMap((payload) => {
       return this.documentService
         .saveDocument(payload)
         .pipe(
