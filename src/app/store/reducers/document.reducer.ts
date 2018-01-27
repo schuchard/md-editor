@@ -11,6 +11,7 @@ export interface DocumentState {
   activeDocumentLoading: boolean;
   documentSaving: boolean;
   documentSaved: boolean;
+  documentSavedAt: string;
 }
 
 export const initialState: DocumentState = {
@@ -22,6 +23,7 @@ export const initialState: DocumentState = {
   activeDocumentLoading: false,
   documentSaving: false,
   documentSaved: false,
+  documentSavedAt: '',
 };
 
 export const getActiveDocument = (state: DocumentState) => state.activeDocument;
@@ -30,6 +32,7 @@ export const getActiveDocumentLoading = (state: DocumentState) => state.activeDo
 
 export const getDocumentSaved = (state: DocumentState) => state.documentSaved;
 export const getDocumentSaving = (state: DocumentState) => state.documentSaving;
+export const getDocumentSavedAt = (state: DocumentState) => state.documentSavedAt;
 
 const setActiveDocument = function(payload) {
   return {
@@ -88,6 +91,7 @@ export function reducer(state = initialState, action: fromDocument.DocumentActio
         activeDocument: setActiveDocument(action.payload),
         documentSaving: false,
         documentSaved: true,
+        documentSavedAt: new Date().toISOString(),
       };
     }
 

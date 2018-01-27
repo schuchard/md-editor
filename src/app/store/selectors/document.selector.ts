@@ -15,15 +15,9 @@ export const getDocumentLoaded = createSelector(
   fromDocument.getActiveDocumentLoaded
 );
 
-export const getDocumentSaved = createSelector(
-  getDocumentState,
-  fromDocument.getDocumentSaved
-);
+export const getDocumentSaved = createSelector(getDocumentState, fromDocument.getDocumentSaved);
 
-export const getDocumentSaving = createSelector(
-  getDocumentState,
-  fromDocument.getDocumentSaving
-);
+export const getDocumentSaving = createSelector(getDocumentState, fromDocument.getDocumentSaving);
 
 export const getActiveFormattedDocument = createSelector(
   getDocumentState,
@@ -40,3 +34,5 @@ export const getActiveRawDocument = createSelector(
     return state.activeDocument.rawDocument;
   }
 );
+
+export const getDocumentSavedAt = createSelector(getDocumentState, fromDocument.getDocumentSavedAt);

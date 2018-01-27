@@ -11,11 +11,13 @@ import { Observable } from 'rxjs/Observable';
 export class MenuComponent implements OnInit {
   documentSaved: Observable<boolean>;
   documentSaving: Observable<boolean>;
+  timestamp: string;
 
   constructor(private store: Store<fromStore.State>) {}
 
   ngOnInit() {
     this.documentSaved = this.store.select(fromStore.getDocumentSaved);
     this.documentSaving = this.store.select(fromStore.getDocumentSaving);
+    this.store.select(fromStore.getDocumentSavedAt).subscribe(time => this.timestamp = time);
   }
 }
