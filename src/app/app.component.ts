@@ -6,8 +6,6 @@ import * as fromStore from './store';
 
 import { DocumentService } from './services';
 
-import { of } from 'rxjs/observable/of';
-
 @Component({
   selector: 'app-md',
   templateUrl: './app.component.html',

@@ -94,7 +94,6 @@ export function reducer(state = initialState, action: fromDocument.DocumentActio
     }
 
     case fromDocument.SAVE_DOCUMENT_SUCCESS: {
-      const doc = action.payload;
       return {
         ...state,
         activeDocument: setActiveDocument(action.payload),
