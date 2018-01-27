@@ -9,7 +9,8 @@
     "build:prod:static": "ng build --prod --base-href ./",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "deploy:firebase": "yarn build:prod:static && firebase deploy"
   },
   "dependencies": {
     "@angular/animations": "^5.2.2",
