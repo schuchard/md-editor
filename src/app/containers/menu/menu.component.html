@@ -1,6 +1,5 @@
 <mat-toolbar>
+  <span *ngIf="documentSaving | async">Saving</span>
+  <span *ngIf="documentSaved | async" matTooltip='abbb' [matTooltipPosition]="'after'">Saved</span>
   <mat-spinner *ngIf="documentSaving | async" [diameter]='22'></mat-spinner>
-  <div matTooltip='abbb' [matTooltipPosition]="'after'">
-    <button mat-button *ngIf="documentSaved | async" color="primary">Saved</button>
-  </div>
 </mat-toolbar>
