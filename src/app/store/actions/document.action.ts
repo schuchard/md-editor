@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store';
+import { ActiveDocument } from '../reducers/document.reducer';
 
 /**
  * load documents
@@ -30,7 +31,7 @@ export const SAVE_DOCUMENT_SUCCESS = '[DOCUMENT] Save Document Success';
 
 export class SaveDocument implements Action {
   readonly type = SAVE_DOCUMENT;
-  constructor(public payload: string) {}
+  constructor(public payload: ActiveDocument) {}
 }
 
 export class SaveDocumentFail implements Action {

@@ -34,6 +34,13 @@ export const getDocumentSaved = (state: DocumentState) => state.documentSaved;
 export const getDocumentSaving = (state: DocumentState) => state.documentSaving;
 export const getDocumentSavedAt = (state: DocumentState) => state.documentSavedAt;
 
+const resetActiveDocument = function() {
+  return {
+    formattedDocument: null,
+    rawDocument: null,
+  };
+};
+
 const setActiveDocument = function(payload) {
   return {
     formattedDocument: payload.formattedDocument,
@@ -71,6 +78,7 @@ export function reducer(state = initialState, action: fromDocument.DocumentActio
     case fromDocument.SAVE_DOCUMENT: {
       return {
         ...state,
+        activeDocument: setActiveDocument(action.payload),
         documentSaving: true,
         documentSaved: false,
       };
@@ -79,6 +87,7 @@ export function reducer(state = initialState, action: fromDocument.DocumentActio
     case fromDocument.SAVE_DOCUMENT_FAIL: {
       return {
         ...state,
+        activeDocument: resetActiveDocument(),
         documentSaving: false,
         documentSaved: false,
       };

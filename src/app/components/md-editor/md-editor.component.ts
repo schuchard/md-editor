@@ -27,7 +27,7 @@ export class MdComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.sub = this.text.valueChanges
-      .pipe(debounceTime(500), distinctUntilChanged())
+      .pipe(debounceTime(100), distinctUntilChanged())
       .subscribe((text) => this.valueChanged.emit(text));
   }
 

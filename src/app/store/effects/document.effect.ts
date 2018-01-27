@@ -10,6 +10,7 @@ import * as fromStore from '../../store';
 
 import * as documentActions from '../actions/document.action';
 import { DocumentService } from '../../services';
+import { tap } from 'rxjs/operators/tap';
 
 @Injectable()
 export class DocumentEffects {
@@ -34,11 +35,11 @@ export class DocumentEffects {
 
   @Effect()
   saveDocument$ = this.actions$.ofType(documentActions.SAVE_DOCUMENT).pipe(
-    debounceTime(800),
+    debounceTime(600),
     map((action: documentActions.SaveDocument) => action.payload),
     switchMap((payload) => {
       return this.documentService
-        .saveDocument(payload)
+        .saveDocument(payload.rawDocument)
         .pipe(
           map((response) => new documentActions.SaveDocumentSuccess(response)),
           catchError((err) => of(new documentActions.SaveDocumentFail(err)))

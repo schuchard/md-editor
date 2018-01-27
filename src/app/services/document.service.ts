@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { of } from 'rxjs/observable/of';
 
 import * as marked from 'marked';
+import { ActiveDocument } from '../store/reducers/document.reducer';
 
 @Injectable()
 export class DocumentService {
@@ -16,7 +17,11 @@ export class DocumentService {
   }
 
   saveDocument(rawDocument: string) {
-    return of({ rawDocument, formattedDocument: this.compileMarkdown(rawDocument) });
+    return of(this.formatDocumentForStore(rawDocument));
+  }
+
+  formatDocumentForStore(rawDocument: string): ActiveDocument {
+    return { rawDocument, formattedDocument: this.compileMarkdown(rawDocument) };
   }
 
   private exampleDocument() {
