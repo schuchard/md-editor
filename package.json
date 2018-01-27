@@ -3,14 +3,14 @@
   "description": "",
   "homepage": "https://stackblitz.com/edit/angular-markdown-editor",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "build:prod:static": "yarn lint && ng build --prod --base-href ./ && ls dist/*.bundle.js",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy:firebase": "yarn build:prod:static && firebase deploy"
+    "start": "ng serve",
+    "build:static": "ng build --prod --base-href ./",
+    "deploy:setup": "run-s lint build:static",
+    "deploy:local": "run-s deploy:setup && firebase serve --only=hosting",
+    "deploy:firebase": "run-s deploy:setup && firebase deploy"
   },
   "dependencies": {
     "@angular/animations": "^5.2.2",
@@ -53,6 +53,7 @@
     "karma-jasmine": "1.1.1",
     "karma-jasmine-html-reporter": "0.2.2",
     "ngrx-store-freeze": "0.2.1",
+    "npm-run-all": "^4.1.2",
     "prettier": "1.10.2",
     "protractor": "5.2.2",
     "ts-node": "4.1.0",
