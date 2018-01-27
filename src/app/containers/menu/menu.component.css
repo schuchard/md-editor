@@ -1,0 +1,7 @@
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
+
+mat-toolbar {
+  background: #e0e0e0
+}

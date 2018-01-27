@@ -1,5 +1,6 @@
 <mat-toolbar>
-  <span *ngIf="documentSaving | async">Saving</span>
-  <span *ngIf="documentSaved | async" matTooltip='abbb' [matTooltipPosition]="'after'">Saved</span>
+  <h1>Markdown Editor</h1>
+  <span class="fill-remaining-space"></span>
+  <span *ngIf="documentSaved | async" matTooltip='abbb' [matTooltipPosition]="'left'">Saved</span>
   <mat-spinner *ngIf="documentSaving | async" [diameter]='22'></mat-spinner>
 </mat-toolbar>
