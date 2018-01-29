@@ -1,4 +1,6 @@
-build_deply:
-  stage: deploy
+build_deploy:
+  stage: build
   script:
-    - "curl -X POST -F token=7c2d539c6dc23423ab9f4719949f36 -F ref=master https://gitlab.com/api/v4/projects/5289165/trigger/pipeline"
+  - npm install
+  - npm install -g firebase-tools
+  - run-s deploy:setup && firebase deploy --token "${FIREBASE_TOKEN}"
