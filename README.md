@@ -1,5 +1,7 @@
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
+[![pipeline status](https://gitlab.com/schuchard/markdown-editor/badges/master/pipeline.svg)](https://gitlab.com/schuchard/markdown-editor/commits/master)
+
 Demo: https://markdown-editor-b90e9.firebaseapp.com/
 
 # angular-markdown-editor
