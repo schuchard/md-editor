@@ -1,14 +1,14 @@
 {
   "name": "angular-template",
   "description": "",
-  "homepage": "https://stackblitz.com/edit/angular-markdown-editor",
   "scripts": {
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "start": "ng serve",
+    "size": "size-limit",
     "build:static": "ng build --prod --base-href ./",
-    "deploy:setup": "run-s lint build:static",
+    "deploy:setup": "run-s lint build:static size",
     "deploy:local": "run-s deploy:setup && firebase serve --only=hosting",
     "deploy:firebase": "run-s deploy:setup && firebase deploy"
   },
@@ -30,9 +30,10 @@
     "core-js": "2.5.3",
     "marked": "0.3.12",
     "rxjs": "5.5.6",
+    "size-limit": "0.14.0",
     "zone.js": "0.8.20"
   },
-  "version": "0.0.0",
+  "version": "1.0.0",
   "license": "MIT",
   "private": true,
   "devDependencies": {

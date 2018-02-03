@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 
 // components
 import { AppComponent } from './app.component';
@@ -32,7 +31,6 @@ export const metaReducers: MetaReducer<any>[] = !environment.production ? [store
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    CommonModule,
     NgMaterialModule.forRoot(),
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot(effects),

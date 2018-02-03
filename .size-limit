@@ -1,0 +1,6 @@
+[
+  {
+    path: ['dist/*.bundle.js', 'dist/*.bundle.css', 'dist/*.html'],
+    limit: '1 MB'
+  }
+]
